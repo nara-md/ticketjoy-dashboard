@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "user": "Maria",
+        "category": "Internet",
+        "priority": "Alta",
+        "status": "Aberto"
+    },
+    {
+        "id": 2,
+        "user": "João",
+        "category": "Email",
+        "priority": "Baixa",
+        "status": "Resolvido"
+    }
+]

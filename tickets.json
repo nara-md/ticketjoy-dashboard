@@ -12,5 +12,19 @@
         "category": "Email",
         "priority": "Baixa",
         "status": "Resolvido"
+    },
+    {
+        "id": 3,
+        "user": "Ana",
+        "category": "Hardware",
+        "priority": "Média",
+        "status": "Aberto"
+    },
+    {
+        "id": 4,
+        "user": "Carlos",
+        "category": "Software",
+        "priority": "Alta",
+        "status": "Fechado"
     }
 ]

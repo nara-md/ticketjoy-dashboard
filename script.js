@@ -4,6 +4,7 @@ const ticketList = document.getElementById('ticketList');
 const allticketsButton = document.getElementById('allTickets');
 const openTicketsButton = document.getElementById('openTickets');
 const closedTicketsButton = document.getElementById('closedTickets');
+const statusText = document.getElementById('statusText');
 
 function renderTickets(tickets) {
     ticketList.innerHTML = '';
@@ -36,22 +37,31 @@ function renderTickets(tickets) {
     });
 }
 
-    function filterTicketsByStatus(status) {
-        const filteredTickets = tickets.filter(ticket => ticket.status.toLocaleLowerCase() === status.toLocaleLowerCase());
-        renderTickets(filteredTickets);
-    };
+function filterTicketsByStatus(...statuses) {
+    const filteredTickets = tickets.filter(ticket =>
+        statuses.includes(ticket.status.toLowerCase())
+    );
 
-    allticketsButton.addEventListener('click', () => {
-        renderTickets(tickets);
-    });
+    renderTickets(filteredTickets);
+}
 
-    openTicketsButton.addEventListener('click', () => {
-        filterTicketsByStatus('aberto');
-    });
 
-    closedTicketsButton.addEventListener('click', () => {
-        filterTicketsByStatus('fechado');
-    });
+allticketsButton.addEventListener('click', () => {
+    renderTickets(tickets);
+});
 
+openTicketsButton.addEventListener('click', () => {
+    filterTicketsByStatus('aberto');
+});
+
+closedTicketsButton.addEventListener('click', () => {
+    filterTicketsByStatus(
+        'fechado',
+        'resolvido',
+        'cancelado'
+    );
+});
+
+statusText.textContent = `Total de tickets: ${tickets.length}\nAbertos: ${tickets.filter(i => i.status.toLocaleLowerCase() === 'aberto').length}\nFechados: ${tickets.filter(i => i.status.toLocaleLowerCase() === 'fechado').length}`;
 // console.log(tickets);
 

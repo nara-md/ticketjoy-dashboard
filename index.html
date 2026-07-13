@@ -10,6 +10,20 @@
     <button id="allTickets" type="button">Todos</button>
     <button id="openTickets" type="button">Abertos</button>
     <button id="closedTickets" type="button">Fechados</button>
+    <button id="addTicket" type="button">Adicionar</button>
+    
+    <div class="form">
+        <input type="text" id="newTitle" placeholder="Título do ticket">
+        <input type="text" id="newUser" placeholder="Usuário">
+        <input type="text" id="newCategory" placeholder="Categoria">
+        <input type="text" id="newPriority" placeholder="Prioridade">
+        <select id="newStatus">
+            <option value="aberto">Aberto</option>
+            <option value="fechado">Fechado</option>
+        </select>
+        <button id="submitTicket" type="button">Enviar</button>
+    </div>
+
     <ul id="ticketList"></ul>
     <div class="status">
         <p id="statusText"></p>

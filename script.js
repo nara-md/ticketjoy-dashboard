@@ -5,6 +5,7 @@ const allticketsButton = document.getElementById('allTickets');
 const openTicketsButton = document.getElementById('openTickets');
 const closedTicketsButton = document.getElementById('closedTickets');
 const statusText = document.getElementById('statusText');
+let chamados = JSON.parse(localStorage.getItem("tickets")) || [...tickets];
 
 function renderTickets(tickets) {
     ticketList.innerHTML = '';
@@ -38,7 +39,7 @@ function renderTickets(tickets) {
 }
 
 function filterTicketsByStatus(...statuses) {
-    const filteredTickets = tickets.filter(ticket =>
+    const filteredTickets = chamados.filter(ticket =>
         statuses.includes(ticket.status.toLowerCase())
     );
 
@@ -47,7 +48,7 @@ function filterTicketsByStatus(...statuses) {
 
 
 allticketsButton.addEventListener('click', () => {
-    renderTickets(tickets);
+    renderTickets(chamados);
 });
 
 openTicketsButton.addEventListener('click', () => {
@@ -62,6 +63,41 @@ closedTicketsButton.addEventListener('click', () => {
     );
 });
 
-statusText.textContent = `Total de tickets: ${tickets.length}\nAbertos: ${tickets.filter(i => i.status.toLocaleLowerCase() === 'aberto').length}\nFechados: ${tickets.filter(i => i.status.toLocaleLowerCase() === 'fechado').length}`;
+statusText.textContent = `Total de tickets: ${chamados.length}\nAbertos: ${chamados.filter(i => i.status.toLocaleLowerCase() === 'aberto').length}\nFechados: ${chamados.filter(i => i.status.toLocaleLowerCase() === 'fechado').length}`;
+
+
+
+function addTicket() {
+    const newTitle = document.getElementById('newTitle').value;
+    const newUser = document.getElementById('newUser').value;
+    const newCategory = document.getElementById('newCategory').value;
+    const newPriority = document.getElementById('newPriority').value;
+    const newStatus = document.getElementById('newStatus').value;
+
+    if (!newTitle || !newUser) {
+        alert("Preencha título e usuário");
+        return;
+    }
+
+    const chamado = {
+        id: new Date().toLocaleDateString(),
+        title: newTitle,
+        user: newUser,
+        status: newStatus,
+        priority: newPriority,
+        category: newCategory
+    };
+
+    chamados.push(chamado);
+
+    localStorage.setItem("tickets", JSON.stringify(chamados));
+
+    renderTickets(chamados);
+}
+
+document
+    .getElementById("submitTicket")
+    .addEventListener("click", addTicket);
+
 // console.log(tickets);
 

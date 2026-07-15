@@ -7,14 +7,20 @@ const closedTicketsButton = document.getElementById('closedTickets');
 const statusText = document.getElementById('statusText');
 let chamados = JSON.parse(localStorage.getItem("tickets")) || [...tickets];
 
+let editingId = null;
+
 function renderTickets(tickets) {
     ticketList.innerHTML = '';
     ticketList.style.display = 'block';
 
+
     tickets.forEach(ticket => {
+        const deleteButton = document.createElement('button');
+        const editButton = document.createElement('button');
+        editButton.textContent = 'Editar';
+        deleteButton.textContent = 'Excluir';
+
         const item = document.createElement('li');
-        const id = document.createElement('span');
-        id.textContent = ticket.id;
         const user = document.createElement('span');
         user.textContent = ticket.user;
         const category = document.createElement('span');
@@ -23,9 +29,22 @@ function renderTickets(tickets) {
         priority.textContent = ticket.priority;
         const status = document.createElement('span');
         status.textContent = ticket.status;
+        const createdAt = document.createElement('span');
+        createdAt.textContent = ticket.createdAt;
 
-        item.appendChild(id);
-        item.appendChild(document.createElement('br'));
+        deleteButton.addEventListener('click', () => {
+            deleteTicket(ticket.id);
+        })
+
+        editButton.addEventListener('click', () => {
+            editingId = ticket.id;
+
+            document.getElementById('newUser').value = ticket.user;
+            document.getElementById('newCategory').value = ticket.category;
+            document.getElementById('newPriority').value = ticket.priority;
+            document.getElementById('newStatus').value = ticket.status;
+        })
+
         item.appendChild(user);
         item.appendChild(document.createElement('br'));
         item.appendChild(category);
@@ -33,7 +52,11 @@ function renderTickets(tickets) {
         item.appendChild(priority);
         item.appendChild(document.createElement('br'));
         item.appendChild(status);
+        item.appendChild(document.createElement('br'));
+        item.appendChild(createdAt);
 
+        item.appendChild(deleteButton);
+        item.appendChild(editButton);
         ticketList.appendChild(item);
     });
 }
@@ -68,27 +91,55 @@ statusText.textContent = `Total de tickets: ${chamados.length}\nAbertos: ${chama
 
 
 function addTicket() {
-    const newTitle = document.getElementById('newTitle').value;
     const newUser = document.getElementById('newUser').value;
     const newCategory = document.getElementById('newCategory').value;
     const newPriority = document.getElementById('newPriority').value;
     const newStatus = document.getElementById('newStatus').value;
 
-    if (!newTitle || !newUser) {
-        alert("Preencha título e usuário");
+    const now = new Date()
+
+    const day = now.getDate();
+    const month = now.getMonth() + 1;
+    const year = now.getFullYear();
+
+    const hour = now.getHours();
+    const minute = now.getMinutes();
+
+    const date = `${day}/${month}/${year} | ${hour}:${minute}`
+
+    if (!newUser) {
+        alert("Preencha o usuário");
         return;
     }
 
     const chamado = {
-        id: new Date().toLocaleDateString(),
-        title: newTitle,
+        id: crypto.randomUUID(),
         user: newUser,
         status: newStatus,
         priority: newPriority,
-        category: newCategory
+        category: newCategory,
+        createdAt: date
     };
 
-    chamados.push(chamado);
+    if (editingId !== null) {
+        const ticket = chamados.find(t => t.id === editingId);
+
+        ticket.user = newUser;
+        ticket.category = newCategory;
+        ticket.priority = newPriority;
+        ticket.status = newStatus;
+        ticket.createdAt = date;
+    } else {
+        chamados.push(chamado);
+    }
+
+    localStorage.setItem("tickets", JSON.stringify(chamados));
+
+    renderTickets(chamados);
+}
+
+function deleteTicket(id) {
+    chamados = chamados.filter(ticket => ticket.id !== id);
 
     localStorage.setItem("tickets", JSON.stringify(chamados));
 
@@ -98,6 +149,5 @@ function addTicket() {
 document
     .getElementById("submitTicket")
     .addEventListener("click", addTicket);
-
 // console.log(tickets);
 

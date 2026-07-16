@@ -88,7 +88,12 @@ closedTicketsButton.addEventListener('click', () => {
 
 statusText.textContent = `Total de tickets: ${chamados.length}\nAbertos: ${chamados.filter(i => i.status.toLocaleLowerCase() === 'aberto').length}\nFechados: ${chamados.filter(i => i.status.toLocaleLowerCase() === 'fechado').length}`;
 
-
+function resetForm() {
+    document.getElementById('newUser').value = '';
+    document.getElementById('newCategory').value = '';
+    document.getElementById('newPriority').value = '';
+    document.getElementById('newStatus').value = 'aberto';
+}
 
 function addTicket() {
     const newUser = document.getElementById('newUser').value;
@@ -129,8 +134,10 @@ function addTicket() {
         ticket.priority = newPriority;
         ticket.status = newStatus;
         ticket.createdAt = date;
+        resetForm();
     } else {
         chamados.push(chamado);
+        resetForm();
     }
 
     localStorage.setItem("tickets", JSON.stringify(chamados));

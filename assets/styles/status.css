@@ -1,5 +1,5 @@
-/* Status Panel */
-.status {
+/* Status Summary Footer Panel */
+.status-summary {
     grid-column: 1 / 13;
     grid-row: 4;
     background: linear-gradient(135deg, #e6f7f0 0%, #eef0fc 100%);
@@ -26,8 +26,9 @@
     margin: 0;
 }
 
-.status::after {
-    font-size: 14px;
+.status-summary::after {
+    content: "TicketJoy System";
+    font-size: 13px;
     font-weight: 700;
     color: var(--on-secondary-container);
     background-color: var(--secondary-container);

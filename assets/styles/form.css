@@ -1,7 +1,6 @@
-/* Form Container */
-.form {
+/* Form Card Container */
+.form-card {
     grid-column: 1 / 5;
-    grid-row: 3;
     background-color: var(--surface);
     border-radius: 24px;
     padding: 28px;
@@ -14,18 +13,38 @@
     animation: spring-up 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
-.form::before {
-    content: "Novo Ticket 📝";
+.form-card h2 {
     font-size: 20px;
     font-weight: 700;
     color: var(--secondary);
     margin-bottom: 4px;
-    display: block;
+}
+
+.ticket-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Form Group layout */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--outline);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding-left: 2px;
 }
 
 /* Inputs and Selects inside Form */
-.form input,
-.form select {
+.ticket-form input,
+.ticket-form select {
     width: 100%;
     padding: 12px 16px;
     border-radius: 12px;
@@ -39,13 +58,13 @@
     transition: all 0.3s ease;
 }
 
-.form input::placeholder {
+.ticket-form input::placeholder {
     color: var(--outline);
     opacity: 0.7;
 }
 
-.form input:focus,
-.form select:focus {
+.ticket-form input:focus,
+.ticket-form select:focus {
     background-color: var(--surface);
     border-color: var(--primary-container);
     box-shadow: 0 0 0 4px rgba(41, 105, 86, 0.1);

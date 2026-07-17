@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
@@ -10,30 +10,67 @@
 </head>
 
 <body>
-    <button id="allTickets" type="button">Todos</button>
-    <button id="openTickets" type="button">Abertos</button>
-    <button id="closedTickets" type="button">Fechados</button>
+    <!-- Top Dashboard Header -->
+    <header class="header">
+        <h1>TicketJoy Dashboard 💙</h1>
+        <p>Gerencie seus chamados com leveza e alegria</p>
+    </header>
 
+    <!-- Filter Buttons Bar -->
+    <nav class="filter-group">
+        <button id="allTickets" type="button">Todos</button>
+        <button id="openTickets" type="button">Abertos</button>
+        <button id="closedTickets" type="button">Fechados</button>
+    </nav>
 
-    <div class="form">
-        <input type="text" id="newUser" placeholder="Usuário">
-        <input type="text" id="newCategory" placeholder="Categoria">
-        <select id="newPriority">
-            <option value="normal">Normal</option>
-            <option value="media">Média</option>
-            <option value="urgente">Urgente</option>
-        </select>
-        <select id="newStatus">
-            <option value="aberto">Aberto</option>
-            <option value="fechado">Fechado</option>
-        </select>
-        <button id="submitTicket" type="button">Enviar</button>
-    </div>
+    <!-- Main Content Area -->
+    <main class="main-content">
+        
+        <!-- New Ticket Form Panel -->
+        <section class="form-card">
+            <h2>Novo Ticket 📝</h2>
+            <form class="ticket-form" onsubmit="return false;">
+                <div class="form-group">
+                    <label for="newUser">Usuário</label>
+                    <input type="text" id="newUser" placeholder="Nome do solicitante">
+                </div>
+                <div class="form-group">
+                    <label for="newCategory">Categoria</label>
+                    <input type="text" id="newCategory" placeholder="Categoria do problema">
+                </div>
+                <div class="form-group">
+                    <label for="newPriority">Prioridade</label>
+                    <select id="newPriority">
+                        <option value="normal">Normal</option>
+                        <option value="media">Média</option>
+                        <option value="urgente">Urgente</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="newStatus">Status</label>
+                    <select id="newStatus">
+                        <option value="aberto">Aberto</option>
+                        <option value="fechado">Fechado</option>
+                    </select>
+                </div>
+                <button id="submitTicket" type="button">Enviar</button>
+            </form>
+        </section>
 
-    <ul id="ticketList"></ul>
-    <div class="status">
+        <!-- Recent Tickets List Panel -->
+        <section class="tickets-card">
+            <h2>Tickets Recentes 📋</h2>
+            <ul id="ticketList"></ul>
+        </section>
+        
+    </main>
+
+    <!-- Status Statistics Footer Panel -->
+    <footer class="status-summary">
         <p id="statusText"></p>
-    </div>
+    </footer>
+
+    <!-- Application Script -->
     <script type="module" src="./assets/scripts/script.js"></script>
 </body>
 

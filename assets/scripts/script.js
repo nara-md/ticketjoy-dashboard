@@ -1,4 +1,4 @@
-import tickets from './tickets.json' with { type: 'json' };
+import tickets from './json/tickets.json' with { type: 'json' };
 
 const ticketList = document.getElementById('ticketList');
 const allticketsButton = document.getElementById('allTickets');
@@ -74,6 +74,8 @@ allticketsButton.addEventListener('click', () => {
     renderTickets(chamados);
 });
 
+allticketsButton.click();
+
 openTicketsButton.addEventListener('click', () => {
     filterTicketsByStatus('aberto');
 });
@@ -91,7 +93,7 @@ statusText.textContent = `Total de tickets: ${chamados.length}\nAbertos: ${chama
 function resetForm() {
     document.getElementById('newUser').value = '';
     document.getElementById('newCategory').value = '';
-    document.getElementById('newPriority').value = '';
+    document.getElementById('newPriority').value = 'normal';
     document.getElementById('newStatus').value = 'aberto';
 }
 
@@ -156,5 +158,7 @@ function deleteTicket(id) {
 document
     .getElementById("submitTicket")
     .addEventListener("click", addTicket);
+
+// Teste do arquivo JSON
 // console.log(tickets);
 

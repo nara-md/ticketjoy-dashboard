@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Inventory System</title>
+    <link rel="stylesheet" href="./assets/styles/style.css">
+    <title>TicketJoy</title>
+    <link rel="shortcut icon" href="./assets/images/favicon.png" type="image/x-icon">
 </head>
+
 <body>
     <button id="allTickets" type="button">Todos</button>
     <button id="openTickets" type="button">Abertos</button>
     <button id="closedTickets" type="button">Fechados</button>
-    <button id="addTicket" type="button">Adicionar</button>
 
-    
+
     <div class="form">
         <input type="text" id="newUser" placeholder="Usuário">
         <input type="text" id="newCategory" placeholder="Categoria">
-        <input type="text" id="newPriority" placeholder="Prioridade">
+        <select id="newPriority">
+            <option value="normal">Normal</option>
+            <option value="media">Média</option>
+            <option value="urgente">Urgente</option>
+        </select>
         <select id="newStatus">
             <option value="aberto">Aberto</option>
             <option value="fechado">Fechado</option>
@@ -28,6 +34,7 @@
     <div class="status">
         <p id="statusText"></p>
     </div>
-    <script type="module" src="script.js"></script>
+    <script type="module" src="./assets/scripts/script.js"></script>
 </body>
+
 </html>

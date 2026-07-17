@@ -1,0 +1,110 @@
+/* Responsive Styles */
+@media (max-width: 900px) {
+    body {
+        grid-template-columns: repeat(4, 1fr);
+        padding: 24px 16px;
+    }
+
+    body::before {
+        grid-column: 1 / 5;
+    }
+
+    #allTickets {
+        grid-column: 1 / 3;
+        grid-row: 2;
+    }
+
+    #openTickets {
+        grid-column: 3 / 5;
+        grid-row: 2;
+    }
+
+    #closedTickets {
+        grid-column: 1 / 3;
+        grid-row: 3;
+    }
+
+    .form {
+        grid-column: 1 / 5;
+        grid-row: 4;
+        width: 100%;
+    }
+
+    #ticketList {
+        grid-column: 1 / 5;
+        grid-row: 5;
+    }
+
+    .status {
+        grid-column: 1 / 5;
+        grid-row: 6;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    #ticketList li {
+        grid-template-columns: auto minmax(0, 1fr);
+        grid-template-rows: auto auto auto auto auto auto;
+        gap: 8px 12px;
+        padding: 16px;
+    }
+
+    #ticketList li::before {
+        grid-column: 1;
+        grid-row: 1 / 3;
+    }
+
+    #ticketList li span:nth-of-type(1) {
+        /* User */
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    #ticketList li span:nth-of-type(2) {
+        /* Category */
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    #ticketList li span:nth-of-type(3) {
+        /* Priority */
+        grid-column: 2;
+        grid-row: 3;
+        margin-top: 4px;
+    }
+
+    #ticketList li span:nth-of-type(4) {
+        /* Status */
+        grid-column: 2;
+        grid-row: 4;
+        margin-top: 4px;
+    }
+
+    #ticketList li span:nth-of-type(5) {
+        /* CreatedAt */
+        grid-column: 1 / 3;
+        grid-row: 5;
+        margin-top: 8px;
+    }
+
+    #ticketList li button:nth-of-type(2) {
+        /* Editar */
+        grid-column: 1;
+        grid-row: 6;
+        margin-top: 8px;
+        width: 100%;
+        text-align: center;
+    }
+
+    #ticketList li button:nth-of-type(1) {
+        /* Excluir */
+        grid-column: 2;
+        grid-row: 6;
+        margin-top: 8px;
+        width: 100%;
+        text-align: center;
+    }
+}

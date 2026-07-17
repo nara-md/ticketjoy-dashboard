@@ -1,0 +1,73 @@
+/* Form Container */
+.form {
+    grid-column: 1 / 5;
+    grid-row: 3;
+    background-color: var(--surface);
+    border-radius: 24px;
+    padding: 28px;
+    box-shadow: 0 10px 30px rgba(41, 105, 86, 0.04);
+    border: 1px solid var(--surface-container-high);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-self: start;
+    animation: spring-up 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.form::before {
+    content: "Novo Ticket 📝";
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--secondary);
+    margin-bottom: 4px;
+    display: block;
+}
+
+/* Inputs and Selects inside Form */
+.form input,
+.form select {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    background-color: var(--surface-container-low);
+    color: var(--on-surface);
+    font-family: 'Quicksand', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form input::placeholder {
+    color: var(--outline);
+    opacity: 0.7;
+}
+
+.form input:focus,
+.form select:focus {
+    background-color: var(--surface);
+    border-color: var(--primary-container);
+    box-shadow: 0 0 0 4px rgba(41, 105, 86, 0.1);
+}
+
+/* Submit Button */
+#submitTicket {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 9999px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 12px rgba(41, 105, 86, 0.15);
+}
+
+#submitTicket:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(41, 105, 86, 0.25);
+}

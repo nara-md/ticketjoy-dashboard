@@ -58,6 +58,7 @@ function renderTickets(tickets) {
         item.appendChild(deleteButton);
         item.appendChild(editButton);
         ticketList.appendChild(item);
+        updateStatusText();
     });
 }
 
@@ -88,7 +89,13 @@ closedTicketsButton.addEventListener('click', () => {
     );
 });
 
-statusText.textContent = `Total de tickets: ${chamados.length}\nAbertos: ${chamados.filter(i => i.status.toLocaleLowerCase() === 'aberto').length}\nFechados: ${chamados.filter(i => i.status.toLocaleLowerCase() === 'fechado').length}`;
+function updateStatusText() {
+    statusText.textContent = `
+    Total de tickets: ${chamados.length}
+    Abertos: ${chamados.filter(i => i.status.toLowerCase() === 'aberto').length}
+    Fechados: ${chamados.filter(i => i.status.toLowerCase() === 'fechado').length}
+    `;
+};
 
 function resetForm() {
     document.getElementById('newUser').value = '';

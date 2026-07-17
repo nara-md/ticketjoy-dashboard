@@ -1,0 +1,71 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--background);
+    background-image:
+        radial-gradient(circle at 10% 20%, rgba(167, 232, 208, 0.15) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255, 209, 220, 0.15) 0%, transparent 20%);
+    background-attachment: fixed;
+    color: var(--on-background);
+    font-family: 'Quicksand', sans-serif;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 32px;
+    min-height: 100vh;
+    align-content: start;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--surface-container-low);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--outline-variant);
+    border-radius: 10px;
+    border: 2px solid var(--surface-container-low);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--outline);
+}
+
+/* Header pseudo-element */
+body::before {
+    content: "TicketJoy Dashboard 💙\000aGerencie seus chamados com leveza e alegria";
+    white-space: pre-line;
+    grid-column: 1 / 13;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    padding-bottom: 16px;
+    border-bottom: 2px dashed var(--primary-container);
+    margin-bottom: 8px;
+}
+
+/* Animations */
+@keyframes spring-up {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

@@ -83,9 +83,7 @@ openTicketsButton.addEventListener('click', () => {
 
 closedTicketsButton.addEventListener('click', () => {
     filterTicketsByStatus(
-        'fechado',
-        'resolvido',
-        'cancelado'
+        'fechado'
     );
 });
 
